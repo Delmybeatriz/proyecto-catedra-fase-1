@@ -90,3 +90,5 @@ git commit -m " Actualizacion commit README.md"
 ## 🎥 Video de Demostración
 
 [▶️ Ver video de la aplicación](https://drive.google.com/file/d/1vmaL436hPistNZJ4tB23UO9lD-D4SRnG/view?usp=drivesdk)
+Hola bea, buenas noches, aqui te mando las capturas de figma, por cualquier cosa te mando el enlace
+https://www.figma.com/design/o7o9o11b1bmRco7dNwpY44/Color-wheel-palette-generator--Comunidad-?node-id=0-1&t=mmVZAnilTd77fkd6-1

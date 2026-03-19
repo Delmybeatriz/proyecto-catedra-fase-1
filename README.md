@@ -1,16 +1,27 @@
-Nombre del Proyecto
-Aplicacion de Cine
------------------------
-breve descripcion del sistema
-La aplicación es una plataforma móvil para explorar películas y series utilizando la API de The Movie Database (TMDb). Permite a los usuarios ver contenido popular, buscar títulos y consultar información detallada como sinopsis, calificaciones e imágenes, mediante una interfaz sencilla e intuitiva.
+# 📱 Aplicación de Cine
 
-Tecnologias Ocupadas
-JavaScript
+---
 
-intrucciones de  instalacion y ejecuccion
+## 📌 Descripción del Sistema
+La aplicación es una plataforma móvil para explorar películas y series utilizando la API de The Movie Database (TMDb).
 
-en la instalacion las instrucciones 
+Permite a los usuarios:
+- Ver contenido popular  
+- Buscar títulos  
+- Consultar información detallada como:
+  - Sinopsis  
+  - Calificaciones  
+  - Imágenes  
 
+Todo mediante una interfaz sencilla e intuitiva.
+
+---
+
+## 🛠️ Tecnologías Utilizadas
+- JavaScript  
+- React Native (Expo)
+
+---
 
 Instalación
 
@@ -21,22 +32,29 @@ Instalación
 Ejecución
 -Ejecutar el comando npm start o npx expo start.
 -Abrir el emulador o escanear el código QR con Expo Go.
--La aplicación se ejecutará en el dispositivo.
+-La aplicación se ejecutará en el dispositivo
 
-Nombre de los integrantes
+```bash
+npm install
 
-Gabriela Giselle vasquez rodriguez VR250295
-Aleshka prscila gamez navidad GN252409
-Mariana Maytee lópez Gómez LG252169
-Delmy Beatriz González Aragón GA252427
+👥 Integrantes
 
- la Estructura de Carpeta
- suspicious-yellow-hummus/
+Gabriela Giselle Vásquez Rodríguez — VR250295
+
+Aleshka Priscila Gámez Navidad — GN252409
+
+Mariana Maytee López Gómez — LG252169
+
+Delmy Beatriz González Aragón — GA252427
+
+
+📂 Estructura del Proyecto
+suspicious-yellow-hummus/
 │
-├── .expo/                  # Configuración interna de Expo
-├── assets/                 # Imágenes y recursos (ej: frozen.jpg)
+├── .expo/
+├── assets/
 │
-├── components/             # Componentes / pantallas principales
+├── components/
 │   ├── DetailScreen.js
 │   ├── FavoritosScreen.js
 │   ├── HomeScreen.js
@@ -45,21 +63,23 @@ Delmy Beatriz González Aragón GA252427
 │   ├── ProfileScreen.js
 │   └── SplashScreen.js
 │
-├── Movie API/              # Lógica o conexión con API de películas
+├── Movie API/
+├── node_modules/
+├── NOSE3/
 │
-├── node_modules/           # Dependencias (no editar)
-├── NOSE3/                  # (Carpeta personalizada del proyecto)
+├── api.js
+├── App.js
+├── index.js
+├── app.json
 │
-├── api.js                  # Funciones para consumir API
-├── App.js                  # Componente principal
-├── index.js                # Punto de entrada
-├── app.json                # Configuración de Expo
+├── package.json
+├── package-lock.json
 │
-├── package.json            # Dependencias y scripts
-├── package-lock.json       # Versiones exactas
-│
-├── .gitignore              # Archivos ignorados por Git
-├── .gitattributes          # Configuración de Git
-└── README.md               # Documentación del proyecto
+├── .gitignore
+├── .gitattributes
+└── README.md
 
-Commit Frecuentes con mensajes Claro 
+💬 Buenas Prácticas de Commits
+
+
+git commit -m "Actualización de README.md"

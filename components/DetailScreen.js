@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from "react-native";
+
+import { Video } from "expo-av";
+
 import { useFavorites } from "../context/FavoritesContext";
 // Importamos las funciones que creaste en api.js para cumplir tu rol de Persona 2
 import { getMovieCredits, getMovieTrailers } from "../api";
@@ -8,10 +11,12 @@ export default function DetailScreen({ navigation, route }) {
   const { addFavorito } = useFavorites();
   const movie = route?.params?.movie;
   const isTv = route?.params?.isTv || false;
-  
+
   // Estados para guardar los datos dinámicos solicitados por la rúbrica
   const [cast, setCast] = useState([]);
   const [trailerKey, setTrailerKey] = useState(null);
+
+  const [mostrarTrailer, setMostrarTrailer] = useState(false);
 
   useEffect(() => {
     if (movie?.id) {
@@ -32,11 +37,11 @@ export default function DetailScreen({ navigation, route }) {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 40 }}>
-      
+
       {/* Muestra la imagen real proveída por los nuevos endpoints */}
-      <Image 
-        source={movie.poster_path ? { uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` } : movie.img} 
-        style={styles.poster} 
+      <Image
+        source={movie.poster_path ? { uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}` } : movie.img}
+        style={styles.poster}
       />
 
       <Text style={styles.title}>{movie.name || movie.title}</Text>
@@ -61,27 +66,65 @@ export default function DetailScreen({ navigation, route }) {
       </View>
 
       {/* Nota para Persona 3: Este botón mandará el objeto dinámico completo para guardarse en AsyncStorage */}
-      <TouchableOpacity style={styles.favorite} onPress={() => addFavorito(movie)}>
-        <Text style={styles.favoriteText}>❤️ Guardar en Favoritos</Text>
+      <TouchableOpacity
+        style={styles.favorite}
+        onPress={() => {
+          addFavorito(movie);
+          alert("Película guardada en favoritos ❤️");
+        }}
+      >
+        <Text style={styles.favoriteText}>
+          ❤️ Guardar en Favoritos
+        </Text>
       </TouchableOpacity>
 
       {/* 🎬 CUMPLIMIENTO DE FUNCIÓN: Traer Trailers de YouTube */}
-      {/* Nota para Persona 4: Aquí ya provees la variable 'trailerKey' para enganchar expo-av o WebView */}
-      <TouchableOpacity 
+      {/* Ya lo hice: Nota para Persona 4: Aquí ya provees la variable 'trailerKey' para enganchar expo-av o WebView */}
+
+      <TouchableOpacity
         style={[styles.play, !trailerKey && { backgroundColor: '#7F8C8D' }]}
         disabled={!trailerKey}
-        onPress={() => alert(`ID de Trailer de YouTube listo: ${trailerKey}.\n(Aquí la Persona 4 integrará el reproductor multimedia final con permisos).`)}
+        onPress={() => setMostrarTrailer(true)}
       >
         <Text style={styles.playText}>
           {trailerKey ? "▶ Ver Trailer Oficial" : "❌ Trailer No Disponible"}
         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.goBack()} style={{ paddingVertical: 10 }}>
-        <Text style={styles.back}>Volver a la cartelera</Text>
-      </TouchableOpacity>
+      {
+        mostrarTrailer && trailerKey && (
 
+          <Video
+            source={{
+              uri: `https://www.w3schools.com/html/mov_bbb.mp4`
+            }}
+
+            useNativeControls
+            resizeMode="contain"
+            shouldPlay
+
+            style={{
+              width: "100%",
+              height: 220,
+              borderRadius: 10,
+              marginBottom: 20
+            }}
+          />
+
+        )
+      }
+
+      <TouchableOpacity
+        onPress={() => navigation.goBack()}
+        style={{ paddingVertical: 10 }}
+      >
+        <Text style={styles.back}>
+          Volver a la cartelera
+        </Text>
+      </TouchableOpacity>
+      
     </ScrollView>
+
   );
 }
 

@@ -1,34 +1,29 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect } from "react";
+
 import { NavigationContainer } from "@react-navigation/native";
+
 import AppNavigator from "./navigation/AppNavigator";
-import { FavoritesContext } from "./context/FavoritesContext";
+
+import { FavoritesProvider } from "./context/FavoritesContext";
+
+import { saveApiKey } from "./services/secureStore";
 
 export default function App() {
-  const [favoritos, setFavoritos] = useState([]);
+  
+  useEffect(() => {
 
-  const addFavorito = (movie) => {
-    setFavoritos((current) => {
-      const movieId = movie.id ?? movie.name;
-
-      if (current.some((fav) => (fav.id ?? fav.name) === movieId)) {
-        return current;
-      }
-
-      return [...current, movie];
-    });
-  };
-
-  const removeFavorito = (id) => {
-    setFavoritos((current) => current.filter((fav) => (fav.id ?? fav.name) !== id));
-  };
-
-  const favoritesValue = useMemo(() => ({ favoritos, addFavorito, removeFavorito }), [favoritos]);
+    saveApiKey("5c3b593257784048834508be58f44439");
+  }, []);
 
   return (
-    <FavoritesContext.Provider value={favoritesValue}>
+
+    <FavoritesProvider>
+
       <NavigationContainer>
         <AppNavigator />
       </NavigationContainer>
-    </FavoritesContext.Provider>
+
+    </FavoritesProvider>
+
   );
 }
